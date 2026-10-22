@@ -1,4 +1,4 @@
-package com.bibilioteca.biblioteca.models;
+package com.bibilioteca.biblioteca.model;
 
 public class Livro {
     private String livro;
@@ -25,7 +25,4 @@ public class Livro {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 }
