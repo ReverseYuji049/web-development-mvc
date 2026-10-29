@@ -21,5 +21,21 @@
 
         <button type="submit">Cadastrar</button>
     </form>
+    <h1>Cadastrar Autor</h1>
+    <form action="/autor" method="post">
+        <label>Nome:
+            <input type="text" th:field="*{nome}">
+        </label>
+
+        <label>Email:
+            <input type="text" th:field="*{email}" />
+        </label>
+
+        <label>Telefone:
+            <input type="text" th:field="*{telefone}" />
+        </label>
+
+        <button type="submit">Cadastrar</button>
+    </form>
 </body>
 </html>

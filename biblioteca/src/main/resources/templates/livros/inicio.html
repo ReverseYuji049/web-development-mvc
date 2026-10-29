@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca</title>
 </head>
 <body>
-
+    <h1 th:text="Sistema de Biblioteca"></h1>
+    <nav>
+        <a th:href="@{/livros}">Livros</a>
+    </nav>
 </body>
 </html>

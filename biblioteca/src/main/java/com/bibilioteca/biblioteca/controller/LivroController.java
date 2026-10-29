@@ -25,7 +25,7 @@ public class LivroController {
     }
     @GetMapping("/livro")
     public String exibirLista(Model model) {
-        Livro livro =  new Livro();
+        Livro livro = new Livro();
         livro.setLivro("Dom Casmurro");
         livro.setAutor("Machado de Assis");
         livro.setIsbn("978-85-00-00000-0");
