@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca</title>
+    <title>Livros cadastrados</title>
 </head>
 <body>
-    <h1 th:text="Sistema de Biblioteca"></h1>
-    <nav>
-        <a th:href="@{/livros}">Livros</a>
-    </nav>
+<h1>Livros cadastrados</h1>
+
+<a th:href="@{/livros/novo}">Cadastrar livro</a>
+
+<ul>
+    <li th:each="livro : ${livros}">
+        <span th:text="${livro.titulo}"></span>
+        — <span th:text="${livro.autor}"></span>
+        — ISBN: <span th:text="${livro.isbn}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/}">Página inicial</a>
 </body>
 </html>

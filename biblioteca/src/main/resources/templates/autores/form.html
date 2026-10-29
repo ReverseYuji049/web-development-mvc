@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Autor</title>
+</head>
+<body>
+<h1>Cadastrar Autor</h1>
+
+<form th:action="@{/autores}" th:object="${autor}" method="post">
+    <label>
+        Nome:
+        <input type="text" th:field="*{nome}" required>
+    </label>
+
+    <br>
+
+    <label>
+        Email:
+        <input type="email" th:field="*{email}" required>
+    </label>
+
+    <br>
+
+    <label>
+        Telefone:
+        <input type="text" th:field="*{telefone}" required>
+    </label>
+
+    <br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<a th:href="@{/autores}">Voltar</a>
+</body>
+</html>

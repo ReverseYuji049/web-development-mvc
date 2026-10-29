@@ -18,31 +18,44 @@ public class LivroController {
 
     private List<Livro> livros = new ArrayList<>();
 
+    public LivroController() {
+        Livro livro = new Livro();
+        livro.setTitulo("Dom Casmurro");
+        livro.setAutor("Machado de Assis");
+        livro.setIsbn("978-85-00-00000-0");
+
+        livros.add(livro);
+    }
+
     // Ativado com o método GET
     @GetMapping
-    public String inicio() {
+    public String inicio(Model model) {
+        model.addAttribute("livros", livros);
         return "livros/inicio";
     }
+
     @GetMapping("/livro")
-    public String exibirLista(Model model) {
+    public String exibirLivro(Model model) {
         Livro livro = new Livro();
-        livro.setLivro("Dom Casmurro");
+        livro.setTitulo("Dom Casmurro");
         livro.setAutor("Machado de Assis");
         livro.setIsbn("978-85-00-00000-0");
 
         // Passa um atributo "livro" para o modelo
         model.addAttribute("livro", livro);
 
-        return "livro";
+        return "livros/livro";
     }
 
-    @GetMapping("/livros/novo")
-    public String novoLivro() {
-        return "livros/novo";
+    @GetMapping("/novo")
+    public String novoLivro(Model model) {
+        model.addAttribute("livro", new Livro());
+        return "livros/form";
     }
 
     @PostMapping("/livros")
-    public String cadastraLivro(@ModelAttribute Livro livro){
+    public String cadastraLivro(@ModelAttribute("livro") Livro livro, Model model){
+        model.addAttribute("livro", livro);
         return "livros/confirmacao";
     }
 }

@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autores</title>
+</head>
+<body>
+<h1>Autores cadastrados</h1>
+
+<a th:href="@{/autores/novo}">Cadastrar autor</a>
+
+<ul>
+    <li th:each="autor : ${autores}">
+        <span th:text="${autor.nome}"></span>
+        — <span th:text="${autor.email}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/}">Página inicial</a>
+</body>
+</html>

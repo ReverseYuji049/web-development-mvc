@@ -1,41 +1,38 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cadastrar Livro</title>
 </head>
 <body>
-    <h1>Cadastrar Livro</h1>
-    <form action="/livros" method="post">
-        <label>Título:
-            <input type="text" th:field="*{titulo}">
-        </label>
+<h1>Cadastrar Livro</h1>
 
-        <label>Autor:
-            <input type="text" th:field="*{autor}" />
-        </label>
+<form th:action="@{/livros}" th:object="${livro}" method="post">
+    <label>
+        Título:
+        <input type="text" th:field="*{titulo}" required>
+    </label>
 
-        <label>ISBN:
-            <input type="text" th:field="*{isbn}" />
-        </label>
+    <br>
 
-        <button type="submit">Cadastrar</button>
-    </form>
-    <h1>Cadastrar Autor</h1>
-    <form action="/autor" method="post">
-        <label>Nome:
-            <input type="text" th:field="*{nome}">
-        </label>
+    <label>
+        Autor:
+        <input type="text" th:field="*{autor}" required>
+    </label>
 
-        <label>Email:
-            <input type="text" th:field="*{email}" />
-        </label>
+    <br>
 
-        <label>Telefone:
-            <input type="text" th:field="*{telefone}" />
-        </label>
+    <label>
+        ISBN:
+        <input type="text" th:field="*{isbn}" required>
+    </label>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+    <br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<a th:href="@{/livros}">Voltar para livros</a>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmação</title>
+</head>
+<style>
+    body {
+        background-color: white;
+    }
+</style>
+<body>
+    <h1>Livro cadastrado!</h1>
+    <p>Título:
+        <span th:text="${livro.titulo}"></span>
+    </p>
+    <p>Autor:
+        <span th:text="${livro.autor}"></span>
+    </p>
+    <p>ISBN:
+        <span th:text="${livro.isbn}"></span>
+    </p>
+
+    <a href="/livros">Ver Livros</a>
+</body>
+</html>
