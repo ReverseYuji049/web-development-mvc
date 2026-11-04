@@ -34,18 +34,18 @@ public class LivroController {
         return "livros/inicio";
     }
 
-    @GetMapping("/livro")
-    public String exibirLivro(Model model) {
-        Livro livro = new Livro();
-        livro.setTitulo("Dom Casmurro");
-        livro.setAutor("Machado de Assis");
-        livro.setIsbn("978-85-00-00000-0");
-
-        // Passa um atributo "livro" para o modelo
-        model.addAttribute("livro", livro);
-
-        return "livros/livro";
-    }
+//    @GetMapping("/livro")
+//    public String exibirLivro(Model model) {
+//        Livro livro = new Livro();
+//        livro.setTitulo("Dom Casmurro");
+//        livro.setAutor("Machado de Assis");
+//        livro.setIsbn("978-85-00-00000-0");
+//
+//        // Passa um atributo "livro" para o modelo
+//        model.addAttribute("livro", livro);
+//
+//        return "livros/livro";
+//    }
 
     @GetMapping("/novo")
     public String novoLivro(Model model) {
@@ -54,8 +54,15 @@ public class LivroController {
     }
 
     @PostMapping("/livros")
-    public String cadastraLivro(@ModelAttribute("livro") Livro livro, Model model){
-        model.addAttribute("livro", livro);
-        return "livros/confirmacao";
+    public String cadastrar(@ModelAttribute Livro livro) {
+        livros.add(livro);
+        // Redireciona para uma página específica
+        return "redirect:/livros";
+    }
+
+    @GetMapping("/livros")
+    public String listar(Model model) {
+        model.addAttribute("livros", livros);
+        return "livros/lista";
     }
 }

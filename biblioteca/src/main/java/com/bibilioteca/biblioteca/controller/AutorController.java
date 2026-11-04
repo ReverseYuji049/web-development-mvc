@@ -33,15 +33,15 @@ public class AutorController {
         return "autores/inicio";
     }
 
-    @GetMapping("/autor")
-    public String exibirAutor(Model model) {
-        if (autores.isEmpty()) {
-            return "redirect:/autores";
-        }
-
-        model.addAttribute("autor", autores.get(0));
-        return "autores/autor";
-    }
+//    @GetMapping("/autor")
+//    public String exibirAutor(Model model) {
+//        if (autores.isEmpty()) {
+//            return "redirect:/autores";
+//        }
+//
+//        model.addAttribute("autor", autores.get(0));
+//        return "autores/autor";
+//    }
 
     @GetMapping("/novo")
     public String novoAutor(Model model) {
@@ -49,14 +49,16 @@ public class AutorController {
         return "autores/form";
     }
 
-    @PostMapping
-    public String cadastraAutor(
-            @ModelAttribute("autor") Autor autor,
-            Model model) {
-
+    @PostMapping("/autores")
+    public String cadastraAutor(@ModelAttribute("autor") Autor autor, Model model) {
         autores.add(autor);
         model.addAttribute("autor", autor);
 
         return "autores/confirmacao";
+    }
+    @GetMapping("/autores")
+    public String lista(Model model) {
+        model.addAttribute("autores", autores);
+        return "autores/lista";
     }
 }
