@@ -3,10 +3,7 @@ package com.bibilioteca.biblioteca.controller;
 import com.bibilioteca.biblioteca.model.Livro;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,26 +31,13 @@ public class LivroController {
         return "livros/inicio";
     }
 
-//    @GetMapping("/livro")
-//    public String exibirLivro(Model model) {
-//        Livro livro = new Livro();
-//        livro.setTitulo("Dom Casmurro");
-//        livro.setAutor("Machado de Assis");
-//        livro.setIsbn("978-85-00-00000-0");
-//
-//        // Passa um atributo "livro" para o modelo
-//        model.addAttribute("livro", livro);
-//
-//        return "livros/livro";
-//    }
-
     @GetMapping("/novo")
     public String novoLivro(Model model) {
         model.addAttribute("livro", new Livro());
         return "livros/form";
     }
 
-    @PostMapping("/livros")
+    @PostMapping
     public String cadastrar(@ModelAttribute Livro livro) {
         livros.add(livro);
         // Redireciona para uma página específica
@@ -64,5 +48,12 @@ public class LivroController {
     public String listar(Model model) {
         model.addAttribute("livros", livros);
         return "livros/lista";
+    }
+
+    // Remoção de Livro
+    @GetMapping("/excluir/{idx}")
+    public String excluir(@PathVariable int idx) {
+        livros.remove(idx);
+        return "redirect:/livros";
     }
 }
