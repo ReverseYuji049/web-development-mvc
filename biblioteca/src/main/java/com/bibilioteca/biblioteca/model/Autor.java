@@ -1,6 +1,18 @@
 package com.bibilioteca.biblioteca.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+// JPA Entity
+@Entity
 public class Autor {
+    // Primary Key
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
+
     private String nome;
     private String email;
     private String telefone;
@@ -27,5 +39,13 @@ public class Autor {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 }

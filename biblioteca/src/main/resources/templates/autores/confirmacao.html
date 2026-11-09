@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <title>Confirmação</title>
 </head>
+<style>
+    body {
+        background-color: white;
+    }
+</style>
 <body>
     <h1>Autor cadastrado!</h1>
 
@@ -12,6 +17,6 @@
     <p>Email: <span th:text="${autor.email}"></span></p>
     <p>Telefone: <span th:text="${autor.telefone}"></span></p>
 
-    <a th:href="@{/autores}">Ver autores</a>
+    <a th:href="/autores">Ver autores</a>
 </body>
 </html>

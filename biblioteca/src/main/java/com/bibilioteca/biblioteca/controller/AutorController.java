@@ -2,12 +2,10 @@
 package com.bibilioteca.biblioteca.controller;
 
 import com.bibilioteca.biblioteca.model.Autor;
+import com.bibilioteca.biblioteca.repository.AutorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,22 +14,17 @@ import java.util.List;
 @RequestMapping("/autores")
 public class AutorController {
 
-    private final List<Autor> autores = new ArrayList<>();
+    private final AutorRepository autorRepository;
 
-    public AutorController() {
-        Autor autor = new Autor();
-        autor.setNome("J.R.R. Tolkien");
-        autor.setEmail("tolkienthelord@gmail.com");
-        autor.setTelefone("+51 9 13791379");
-
-        autores.add(autor);
+    public AutorController(AutorRepository autorRepository) {
+        this.autorRepository = autorRepository;
     }
 
-//    @GetMapping
-//    public String inicio(Model model) {
-//        model.addAttribute("autores", autores);
-//        return "autores/inicio";
-//    }
+    @GetMapping
+    public String listar(Model model) {
+        model.addAttribute("autores", autorRepository.findAll());
+        return "autores/lista";
+    }
 
     @GetMapping("/novo")
     public String novoAutor(Model model) {
@@ -40,15 +33,14 @@ public class AutorController {
     }
 
     @PostMapping
-    public String cadastraAutor(@ModelAttribute("autor") Autor autor, Model model) {
-        autores.add(autor);
-        model.addAttribute("autor", autor);
-
-        return "autores/confirmacao";
+    public String cadastrar(@ModelAttribute("autor") Autor autor) {
+        autorRepository.save(autor);
+        return "redirect:/autores";
     }
-    @GetMapping
-    public String lista(Model model) {
-        model.addAttribute("autores", autores);
-        return "autores/lista";
+    // Remoção de autor
+    @GetMapping("/excluir/{id}") // Define a rota a ser acionada
+    public String excluir(@PathVariable Long id) {
+        autorRepository.deleteById(id);
+        return "redirect:/autores";
     }
 }
