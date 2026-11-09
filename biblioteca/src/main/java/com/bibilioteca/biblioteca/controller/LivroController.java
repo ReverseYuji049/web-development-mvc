@@ -1,6 +1,7 @@
 package com.bibilioteca.biblioteca.controller;
 
 import com.bibilioteca.biblioteca.model.Livro;
+import com.bibilioteca.biblioteca.repository.LivroRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,22 +14,16 @@ import java.util.List;
 @RequestMapping("/livros")
 public class LivroController {
 
-    private List<Livro> livros = new ArrayList<>();
+    private final LivroRepository livroRepository;
 
-    public LivroController() {
-        Livro livro = new Livro();
-        livro.setTitulo("Dom Casmurro");
-        livro.setAutor("Machado de Assis");
-        livro.setIsbn("978-85-00-00000-0");
-
-        livros.add(livro);
+    public LivroController(LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
     }
 
-    // Ativado com o método GET
     @GetMapping
-    public String inicio(Model model) {
-        model.addAttribute("livros", livros);
-        return "livros/inicio";
+    public String listar(Model model) {
+        model.addAttribute("livros", livroRepository.findAll());
+        return "livros/lista";
     }
 
     @GetMapping("/novo")
@@ -39,21 +34,16 @@ public class LivroController {
 
     @PostMapping
     public String cadastrar(@ModelAttribute Livro livro) {
-        livros.add(livro);
+        livroRepository.save(livro);
         // Redireciona para uma página específica
         return "redirect:/livros";
     }
 
-    @GetMapping("/livros")
-    public String listar(Model model) {
-        model.addAttribute("livros", livros);
-        return "livros/lista";
-    }
 
     // Remoção de Livro
-    @GetMapping("/excluir/{idx}")
-    public String excluir(@PathVariable int idx) {
-        livros.remove(idx);
+    @GetMapping("/excluir/{id}") // Define a rota a ser acionada
+    public String excluir(@PathVariable Long id) {
+        livroRepository.deleteById(id);
         return "redirect:/livros";
     }
 }
