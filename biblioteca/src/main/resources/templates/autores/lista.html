@@ -6,20 +6,22 @@
     <title>Lista de Autores</title>
 </head>
 <body>
+    <h1>Lista de Autores</h1>
 
-<h1>Lista de Autores</h1>
+    <a th:href="@{/autores/novo}">Cadastrar Autor</a>
 
-<a th:href="@{/autores/novo}">Cadastrar Autor</a>
+    <ul>
+        <li th:each="autor : ${autores}">
+            <p>Nome: <span th:text="${autor.nome}"></span></p>
+            <p>Email: <span th:text="${autor.email}"></span></p>
+            <p>Telefone: <span th:text="${autor.telefone}"></span></p>
 
-<ul>
-    <li th:each="autor : ${autores}">
-        <p>Nome: <span th:text="${autor.nome}"></span></p>
-        <p>Email: <span th:text="${autor.email}"></span></p>
-        <p>Telefone: <span th:text="${autor.telefone}"></span></p>
-    </li>
-</ul>
+            <a th:href="@{/autores/excluir/{idx}(idx=${autor.id})}">
+                <button type="button">Excluir</button>
+            </a>
+        </li>
+    </ul>
 
-<a th:href="@{/}">Página inicial</a>
-
+    <a th:href="@{/}">Página inicial</a>
 </body>
 </html>
