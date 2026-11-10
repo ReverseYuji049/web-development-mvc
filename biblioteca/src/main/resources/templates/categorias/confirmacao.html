@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmação</title>
+</head>
+<body>
+    <h1>Categoria cadastrado!</h1>
+    <p>Nome:
+        <span th:text="${categoria.nome}"></span>
+    </p>
+    <p>Descrição:
+        <span th:text="${categoria.descricao}"></span>
+    </p>
+
+    <a href="/categorias">Ver Categorias</a>
+</body>
+</html>

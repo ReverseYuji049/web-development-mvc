@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Categorias</title>
+</head>
+<body>
+    <h1>Lista de Categorias</h1>
+
+    <a th:href="@{/categorias/nova}">Cadastrar Categoria</a>
+
+    <ul>
+        <li th:each="categoria, status : ${categorias}">
+            <p>Nome: <span th:text="${categoria.nome}"></span></p>
+            <p>Descrição: <span th:text="${categoria.descricao}"></span></p>
+
+            <a th:href="@{/categorias/excluir/{idx}(idx=${categoria.id})}">
+                <button type="button">Excluir</button>
+            </a>
+        </li>
+    </ul>
+
+    <a th:href="@{/}">Página inicial</a>
+</body>
+</html>

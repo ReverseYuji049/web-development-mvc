@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias Cadastradas</title>
+</head>
+<body>
+    <h1>Categorias cadastradas</h1>
+
+    <a th:href="@{/categorias/nova}">Cadastrar categoria</a>
+
+    <ul>
+        <li th:each="categoria : ${categorias}">
+            <span th:text="${categoria.nome}"></span>
+            — Descrição: <span th:text="${categoria.descricao}"></span>
+        </li>
+    </ul>
+
+    <a th:href="@{/}">Página inicial</a>
+</body>
+</html>
